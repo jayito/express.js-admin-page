@@ -1,0 +1,39 @@
+.pg-login {
+	background-image: url('../img/background.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	.card {
+		background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+		
+		.card-body {
+			.input-group {
+				.input-group-prepend {
+					position: absolute;
+					left: 0;
+					top: 5px;
+
+					.input-group-text {
+						background-color: unset;
+						color: #fff;
+						border: 0;
+						border-radius: 0;
+					}
+				}
+				.form-control {
+					background-color: unset;
+					color: #fff;
+					padding-left: 45px;
+					border: 1px solid #fff6;
+					border-radius: 3px;
+
+					&:focus {
+						border-color: #d2d2d2;
+					}
+				}
+			}
+		}
+	}
+}
