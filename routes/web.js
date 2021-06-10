@@ -5,7 +5,11 @@ const paginate = require('express-paginate');
 const UserController = require('../controllers/UsersController');
 
 router.get('/', (req, res, next) => {
-	return res.render('index.ejs');
+	if (req.session.userName) {
+    return res.redirect('/dashboard');
+	} else {
+		return res.render('index.ejs');
+  }
 });
 
 router.get('/register', (req, res, next) => {
@@ -72,7 +76,25 @@ router.post('/login', [
 router.get('/dashboard', (req, res, next) => {
   const user = new UserController();
 	if (req.session.userName) {
-		return res.render('dashboard.ejs', { "name": data.username, "email": data.email });
+		return res.render('dashboard.ejs', { "name": req.session.userName });
+	} else {
+    return res.redirect('/logout');
+  }
+});
+
+router.get('/blogs', (req, res, next) => {
+  const user = new UserController();
+	if (req.session.userName) {
+		return res.render('blogs.ejs', { "name": req.session.userName });
+	} else {
+    return res.redirect('/logout');
+  }
+});
+
+router.get('/customers', (req, res, next) => {
+  const user = new UserController();
+	if (req.session.userName) {
+		return res.render('customers.ejs', { "name": req.session.userName });
 	} else {
     return res.redirect('/logout');
   }
@@ -92,34 +114,6 @@ router.get('/logout', (req, res, next) => {
 
 router.get('/forget', (req, res, next) => {
 	res.render("forget.ejs");
-});
-
-router.post('/forgetpass', (req, res, next) => {
-	//console.log('req.body');
-	//console.log(req.body);
-	User.findOne({ email: req.body.email }, (err, data) => {
-		console.log(data);
-		if (!data) {
-			res.send({ "Success": "This Email Is not regestered!" });
-		} else {
-			// res.send({"Success":"Success!"});
-			if (req.body.password == req.body.passwordConf) {
-				data.password = req.body.password;
-				data.passwordConf = req.body.passwordConf;
-
-				data.save((err, Person) => {
-					if (err)
-						console.log(err);
-					else
-						console.log('Success');
-					res.send({ "Success": "Password changed!" });
-				});
-			} else {
-				res.send({ "Success": "Password does not matched! Both Password should be same." });
-			}
-		}
-	});
-
 });
 
 module.exports = router;

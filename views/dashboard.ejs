@@ -1,38 +1,460 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<title>Login Register App</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-	</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="./css/main.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+    <title>Oilfield - Dashboard</title>
+
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
 </head>
 
-<body>
-	<div class="col-md-4 col-md-offset-4 form-card">
-		<div>
-			<p>Profile Detail</p>
-		</div>
-		<div>
-			<center>
-				<table class="table table-hover text-center">
-					<tr>
-						<td>Name </td>
-						<td><%= name %></td>
-					</tr>
-					<tr>
-						<td>Email </td>
-						<td><%= email %></td>
-					</tr>
-				</table>
-			</center>
-		</div>
-		<div class="abc" id="LangTable">
-			<a href="/logout">Logout</a>
-		</div>
-	</div>
+<body class="theme-dark">
+    <div class="grid-wrapper sidebar-bg bg1">
+        <!-- BOF HEADER -->
+        <div class="header">
+            <div class="header-bar">
+                <div class="brand">
+                    <a href="/dashboard" class="logo"><span class="text-carolina">OIL </span>FIELD</a>
+                    <a href="/dashboard" class="logo-sm text-carolina" style="display: none;">OIL</a>
+                </div>
+                <div class="btn-toggle">
+                    <!-- <a href="#" class="toggle-sidebar-btn"><i class="ti-arrow-circle-left"></i></a> -->
+                    <a href="#" class="slide-sidebar-btn" style="display: none;"><i class="ti-menu"></i></a>
+                </div>
+                <div class="navigation d-flex">
+
+                    <!-- BOF Header Search -->
+                    <form class="navbar-search" role="search" method="post" action="#">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="ti-search"></i></div>
+                            </div>
+                            <input type="text" placeholder="Search for keywords" class="form-control" name="top-search"
+                                id="top-search">
+                        </div>
+                    </form>
+                    <!-- EOF Header Search -->
+
+                    <!-- BOF Header Nav -->
+                    <div class="navbar-menu d-flex">
+                        <div class="menu-item">
+                            <a href="#" class="btn" data-toggle="dropdown">
+                                <i class="ti-bell"></i>
+                                <span class="badge badge-pill badge-danger">3</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right dropdown-alert">
+                                <li class="dropdown-header text-center"><a href="#"><i class="ti-comment-alt"></i> View
+                                        All Alerts <i class="ti-angle-right"></i></a></li>
+                                <li><a href="#"><i class="fa fa-user"></i> New user registered <span>Just now</span></a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-calendar-plus-o"></i> New event created <span>5 min
+                                            ago</span></a></li>
+                                <li><a href="#"><i class="fa fa-area-chart"></i> Report ready to download <span>1 day
+                                            ago</span></a></li>
+                                <li><a href="#"><i class="fa fa-bank"></i> Bill payment reminder <span>1 day
+                                            ago</span></a></li>
+                                <li><a href="#"><i class="fa fa-clock-o"></i> Staff meeting <span>3 days ago</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu-item">
+                            <a href="#" class="btn" data-toggle="dropdown">
+                                <i class="ti-email"></i>
+                                <span class="badge badge-pill badge-success">7</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right dropdown-message">
+                                <li class="dropdown-header text-center"><a href="#"><i class="ti-comments"></i> View All
+                                        Messages <i class="ti-angle-right"></i></a></li>
+                                <li>
+                                    <img src="img/profile/profile-04.jpg">
+                                    <div class="message-row">
+                                        <small>24h ago</small>
+                                        <a href="#"><span class="message-user">Pear Appleton</span><br>
+                                            Staff meeting on Tuesday at 4PM, remember to set date</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="img/profile/profile-07.jpg">
+                                    <div class="message-row">
+                                        <small>2h ago</small>
+                                        <a href="#"><span class="message-user">siQuang Humbleman</span><br>
+                                            RE: Remember to generate PNL for October</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="img/profile/profile-06.jpg">
+                                    <div class="message-row">
+                                        <small>3d ago</small>
+                                        <a href="#"><span class="message-user">Lemony Tang</span><br>
+                                            Appointment with lawyer, better call Saul!</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="img/profile/profile-07.jpg">
+                                    <div class="message-row">
+                                        <small>4d ago</small>
+                                        <a href="#"><span class="message-user">siQuang Humbleman</span><br>
+                                            Theme designed by siQuang for siQthemes</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="align-items-center btn d-flex justify-content-center menu-item">
+                            <a href="/logout" class="icon-logout"><i class="ti-shift-right-alt"></i></a>
+                        </div>
+                        <div class="menu-item">
+                            <a href="#" class="btn right-sidebar-toggle"><i class="ti-user"></i></a>
+                        </div>
+                    </div>
+                    <!-- EOF Header Nav -->
+
+                </div>
+            </div>
+        </div>
+        <!-- EOF HEADER -->
+
+        <!-- BOF ASIDE-LEFT -->
+        <div id="sidebar" class="sidebar">
+					<div class="sidebar-content">
+						<div class="sidebar-menu">
+							<ul>
+									<li class="active">
+										<a href="/dashboard">
+											<i class="ti-dashboard"></i>
+											<span class="menu-text">Dashboard</span>
+										</a>
+									</li>
+									<li>
+										<a href="/blogs">
+											<i class="ti-folder" style="font-size: 1.2em;"></i>
+											<span class="menu-text">Blogs</span>
+										</a>
+									</li>
+									<li>
+										<a href="/customers">
+											<i class="ti-user" style="font-size: 1.2em;"></i>
+											<span class="menu-text">Customers</span>
+										</a>
+									</li>
+							</ul>
+						</div>
+					</div>
+        </div>
+        <!-- EOF ASIDE-LEFT -->
+
+        <!-- BOF MAIN -->
+        <div class="main">
+
+            <!-- BOF Breadcrumb -->
+            <div class="row">
+                <div class="col">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/dashboard"><i class="ti-home"></i> Dashboard</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- EOF Breadcrumb -->
+
+            <!-- Year Comparison Chart -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-3">
+                        <div class="card-body" id="year-comparison-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Employees Sales -->
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <div class="caption">
+                                <i class="ti-user"></i> Employees Sales
+                            </div>
+                            <div class="tools">
+                                <a href="javascript:;" class="btn btn-round btn-sm btn-outline-secondary">Today</a>
+                                <a href="javascript:;" class="btn btn-round btn-sm btn-outline-secondary">Week</a>
+                                <a href="javascript:;" class="btn btn-round btn-sm btn-outline-secondary">Month</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card border-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-6 text-right">
+                                                    <h6 class="bold text-secondary">Daily</h6>
+                                                    <h5 class="card-title text-tuscany bold">$7,524</h3>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div id="sparkline-chart1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card border-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-6 text-right">
+                                                    <h6 class="bold text-secondary">Weekly</h6>
+                                                    <h5 class="card-title text-info bold">$18,852</h3>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div id="sparkline-chart2"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 scrollbox-md" data-simplebar>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Employee</th>
+                                                    <th class="text-right">Daily</th>
+                                                    <th class="text-right">Totals</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td scope="row"><img src="img/profile/profile-07.jpg" class="rounded-circle mr-2" width="30" alt=""> <a href="javascript:;">siQuang Humbleman</a></td>
+                                                    <td class="text-right">$2,546</td>
+                                                    <td class="text-right">$14,587</td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="row"><img src="img/profile/profile-02.jpg" class="rounded-circle mr-2" width="30" alt=""> <a href="javascript:;">Bob OfHope</a></td>
+                                                    <td class="text-right">$2,338</td>
+                                                    <td class="text-right">$8,321</td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="row"><img src="img/profile/profile-03.jpg" class="rounded-circle mr-2" width="30" alt=""> <a href="javascript:;">Dana Squash</a></td>
+                                                    <td class="text-right">$1,478</td>
+                                                    <td class="text-right">$6,720</td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="row"><img src="img/profile/profile-04.jpg" class="rounded-circle mr-2" width="30" alt=""> <a href="javascript:;">Pear Appleton</a></td>
+                                                    <td class="text-right">$2,338</td>
+                                                    <td class="text-right">$8,321</td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="row"><img src="img/profile/profile-06.jpg" class="rounded-circle mr-2" width="30" alt=""> <a href="javascript:;">Lemony Tang</a></td>
+                                                    <td class="text-right">$1,478</td>
+                                                    <td class="text-right">$6,720</td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="row"><img src="img/profile/profile-01.jpg" class="rounded-circle mr-2" width="30" alt=""> <a href="javascript:;">Duke Turnbull</a></td>
+                                                    <td class="text-right">$1,338</td>
+                                                    <td class="text-right">$4,321</td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="row"><img src="img/profile/profile-05.jpg" class="rounded-circle mr-2" width="30" alt=""> <a href="javascript:;">Berry Cherry</a></td>
+                                                    <td class="text-right">$978</td>
+                                                    <td class="text-right">$3,720</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Tasks -->
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <div class="caption">
+                                <i class="ti-pencil-alt"></i> Recent Blogs
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row py-3">
+                                <div class="col-md-3 col-6 d-flex flex-column align-items-center">
+                                    <h2 class="text-primary bold">10</h2>
+                                    Active
+                                </div>
+                                <div class="col-md-3 col-6 d-flex flex-column align-items-center">
+                                    <h2 class="text-success bold">2</h2>
+                                    In-Progress
+                                </div>
+                                <div class="col-md-3 col-6 d-flex flex-column align-items-center">
+                                    <h2 class="text-warning bold">3</h2>
+                                    On-Hold
+                                </div>
+                                <div class="col-md-3 col-6 d-flex flex-column align-items-center">
+                                    <h2 class="text-secondary bold">4</h2>
+                                    Completed
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 scrollbox-md" data-simplebar>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-baseline">
+                                                <div class="custom-checkbox custom-control">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox1" name="checkbox1">
+                                                    <label class="custom-control-label" for="checkbox1">&nbsp;</label>
+                                                </div>
+                                                <div class="pl-4">
+                                                    <strong>Doctor Appointment <i class="ti-hand-open text-warning"></i></strong><br>Annual checkup with doctor
+                                                </div>
+                                                <div class="ml-auto text-right">
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="javascript:;" class="btn btn-sm btn-success"><i class="ti-check"></i></a>
+                                                        <a href="javascript:;" class="btn btn-sm btn-secondary"><i class="ti-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-baseline">
+                                                <div class="custom-checkbox custom-control">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox2" name="checkbox2">
+                                                    <label class="custom-control-label" for="checkbox2">&nbsp;</label>
+                                                </div>
+                                                <div class="pl-4">
+                                                    <strong>Write Unit Test <i class="ti-timer text-success"></i></strong><br>Unit test for dashboard widgets
+                                                </div>
+                                                <div class="ml-auto text-right">
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="javascript:;" class="btn btn-sm btn-success"><i class="ti-check"></i></a>
+                                                        <a href="javascript:;" class="btn btn-sm btn-secondary"><i class="ti-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-baseline">
+                                                <div class="custom-checkbox custom-control">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox3" name="checkbox3">
+                                                    <label class="custom-control-label" for="checkbox3">&nbsp;</label>
+                                                </div>
+                                                <div class="pl-4">
+                                                    <strong>Annual Report <i class="ti-notepad text-primary"></i></strong><br>Design annual report cover
+                                                </div>
+                                                <div class="ml-auto text-right">
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="javascript:;" class="btn btn-sm btn-success"><i class="ti-check"></i></a>
+                                                        <a href="javascript:;" class="btn btn-sm btn-secondary"><i class="ti-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-baseline">
+                                                <div class="custom-checkbox custom-control">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox4" name="checkbox4">
+                                                    <label class="custom-control-label" for="checkbox4">&nbsp;</label>
+                                                </div>
+                                                <div class="pl-4">
+                                                    <strong>Management Meeting <i class="ti-notepad text-primary"></i></strong><br>Coming up meeting with staffs
+                                                </div>
+                                                <div class="ml-auto text-right">
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="javascript:;" class="btn btn-sm btn-success"><i class="ti-check"></i></a>
+                                                        <a href="javascript:;" class="btn btn-sm btn-secondary"><i class="ti-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-baseline">
+                                                <div class="custom-checkbox custom-control">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox5" name="checkbox5">
+                                                    <label class="custom-control-label" for="checkbox5">&nbsp;</label>
+                                                </div>
+                                                <div class="pl-4">
+                                                    <strong>Merge Development <i class="ti-timer text-success"></i></strong><br>Merge development branch with master
+                                                </div>
+                                                <div class="ml-auto text-right">
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="javascript:;" class="btn btn-sm btn-success"><i class="ti-check"></i></a>
+                                                        <a href="javascript:;" class="btn btn-sm btn-secondary"><i class="ti-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-baseline">
+                                                <div class="custom-checkbox custom-control">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox6" name="checkbox6">
+                                                    <label class="custom-control-label" for="checkbox6">&nbsp;</label>
+                                                </div>
+                                                <div class="pl-4">
+                                                    <strong>Build Report <i class="ti-hand-open text-warning"></i></strong><br>Build report graph for dashboard
+                                                </div>
+                                                <div class="ml-auto text-right">
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="javascript:;" class="btn btn-sm btn-success"><i class="ti-check"></i></a>
+                                                        <a href="javascript:;" class="btn btn-sm btn-secondary"><i class="ti-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-baseline">
+                                                <div class="custom-checkbox custom-control">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox7" name="checkbox7">
+                                                    <label class="custom-control-label" for="checkbox7">&nbsp;</label>
+                                                </div>
+                                                <div class="pl-4">
+                                                    <strong>Add New Vendor <i class="ti-hand-open text-warning"></i></strong><br>Add new third-party vendor
+                                                </div>
+                                                <div class="ml-auto text-right">
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="javascript:;" class="btn btn-sm btn-success"><i class="ti-check"></i></a>
+                                                        <a href="javascript:;" class="btn btn-sm btn-secondary"><i class="ti-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- EOF MAIN -->
+
+        <!-- BOF FOOTER -->
+        <div class="footer">
+            <p class="text-center">Copyright © 2021 Oilfield by M.J</a>. All rights reserved.</p>
+        </div>
+        
+        <!-- Preloader -->
+        <div id="preloader"></div>
+
+        <!-- EOF FOOTER -->
+        <div id="overlay"></div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/pages/dashboard1.js"></script>
 </body>
 
 </html>

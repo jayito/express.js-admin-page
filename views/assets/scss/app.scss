@@ -37,3 +37,20 @@
 		}
 	}
 }
+
+.sidebar-menu {
+	li {
+		&.active {
+			i {
+				color: #fff;
+			}
+			.menu-text {
+				color: #fff;
+			}
+		}
+	}
+}
+
+.icon-logout {
+	font-size: 20px;
+}
