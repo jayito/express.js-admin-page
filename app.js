@@ -8,11 +8,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-require('dotenv').config();
+const config = require('./config');
 
-const MongoDBURI = process.env.MONGO_URI || 'mongodb://localhost/ManualAuth';
-
-mongoose.connect(MongoDBURI, {
+// connect to mongoDB
+mongoose.connect(config.db.connectionURL(), {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });
@@ -21,11 +20,13 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
 });
+// end of connection 
 
 app.use(session({
-  secret: 'work hard',
+  secret: config.session.secret,
+  cookie: { maxAge: Number(config.session.maxAge) },
   resave: true,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store: new MongoStore({
     mongooseConnection: db
   })
@@ -43,7 +44,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 require('./lib/compileSass').compileSassApp().catch(console.error);
 const css = require('./routes/css');
 app.use('/css', css);
+// end of scss
 
+// start of routing
 const index = require('./routes/index');
 
 app.use('/', index);
@@ -63,7 +66,7 @@ app.use((err, req, res, next) => {
 });
 
 
-// listen on port 3000
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Express app listening on port', process.env.PORT);
+// listen on port 
+app.listen(config.settting.port, () => {
+  console.log('Express app listening on port', config.settting.port);
 });

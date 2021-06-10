@@ -1,112 +1,93 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
+const { check, validationResult, body } = require('express-validator/check');
+const paginate = require('express-paginate');
+const UserController = require('../controllers/UsersController');
 
 router.get('/', (req, res, next) => {
 	return res.render('index.ejs');
 });
 
+router.get('/register', (req, res, next) => {
+	return res.render('register.ejs');
+});
 
-router.post('/register', (req, res, next) => {
-	console.log(req.body);
-	let personInfo = req.body;
-
-
-	if (!personInfo.email || !personInfo.username || !personInfo.password || !personInfo.passwordConf) {
-		res.send();
+router.post('/register', [
+	check('username', 'Username must be greater than 4 chars').isLength({ min: 4 }),
+	check('password', 'Password must be greater than 4 chars').isLength({ min: 4 }),
+  check('confirmPassword', 'Password confirmation does not match password').custom((value, { req }) => {
+    if (req.body.password && req.body.password.length >= 1 && value !== req.body.password) {
+      throw new Error('Password confirmation does not match password');
+    } else {
+      return true;
+    }
+  })
+], (req, res) => {
+	const user = new UserController();
+  const errors = validationResult(req);
+	const { username, password } = req.body;
+	if (!errors.isEmpty()) {
+		console.log('error');
+		res.send({ "Success": "password is not matched" });
 	} else {
-		if (personInfo.password == personInfo.passwordConf) {
-
-			User.findOne({ email: personInfo.email }, (err, data) => {
-				if (!data) {
-					let c;
-					User.findOne({}, (err, data) => {
-
-						if (data) {
-							console.log("if");
-							c = data.unique_id + 1;
-						} else {
-							c = 1;
-						}
-
-						let newPerson = new User({
-							unique_id: c,
-							email: personInfo.email,
-							username: personInfo.username,
-							password: personInfo.password,
-							passwordConf: personInfo.passwordConf
-						});
-
-						newPerson.save((err, Person) => {
-							if (err)
-								console.log(err);
-							else
-								console.log('Success');
-						});
-
-					}).sort({ _id: -1 }).limit(1);
-					res.send({ "Success": "You are regestered,You can login now." });
-				} else {
-					res.send({ "Success": "Email is already used." });
-				}
-
-			});
-		} else {
-			res.send({ "Success": "password is not matched" });
-		}
+		user.createUser({ username, password })
+      .then(() => {
+        res.redirect('/login');
+      }, error => {
+				console.log('error2');
+        res.redirect('/login');
+      });
 	}
 });
 
 router.get('/login', (req, res, next) => {
-	return res.render('login.ejs');
+	return res.render('index.ejs');
 });
 
-router.post('/login', (req, res, next) => {
-	//console.log(req.body);
-	User.findOne({ email: req.body.email }, (err, data) => {
-		if (data) {
+router.post('/login', [
+	check('username', 'Username must be greater than 4 chars').isLength({ min: 4 }),
+  check('password', 'Password must be greater than 4 chars').isLength({ min: 4 })
+], (req, res) => {
+	const errors = validationResult(req);
+  const userName = req.body.username || null;
+  const passWord = req.body.password || null;
+	if (!errors.isEmpty()) {
+    return res.render('users/login', util.ResponseUtil.buildDefaultRenderParams(req, res, { layout: 'login', errors: errors.array(), form: { userName: userName } }));
+  }
 
-			if (data.password == req.body.password) {
-				//console.log("Done Login");
-				req.session.userId = data.unique_id;
-				//console.log(req.session.userId);
-				res.redirect('/profile');
-				res.send({ "Success": "Success!" });
-			} else {
-				res.send({ "Success": "Wrong password!" });
-			}
-		} else {
-			res.send({ "Success": "This Email Is not regestered!" });
-		}
-	});
+	if (userName && passWord) {
+    const user = new UserController();
+    user.verifyUser(userName, passWord)
+      .then(
+        (user) => {
+          req.session.loggedIn = true;
+          req.session.userName = user.username;
+					return res.redirect('/dashboard');
+        },
+        () => res.redirect('/')
+      );
+  }
 });
 
-router.get('/profile', (req, res, next) => {
-	console.log("profile");
-	User.findOne({ unique_id: req.session.userId }, (err, data) => {
-		// console.log("data");
-		// console.log(data);
-		if (!data) {
-			res.redirect('/');
-		} else {
-			//console.log("found");
-			return res.render('data.ejs', { "name": data.username, "email": data.email });
-		}
-	});
+router.get('/dashboard', (req, res, next) => {
+  const user = new UserController();
+	if (req.session.userName) {
+		return res.render('dashboard.ejs', { "name": data.username, "email": data.email });
+	} else {
+    return res.redirect('/logout');
+  }
 });
 
 router.get('/logout', (req, res, next) => {
-	console.log("logout")
-	if (req.session) {
-		// delete session object
+  if (req.session && req.session.loggedIn) {
 		req.session.destroy((err) => {
 			if (err) {
 				return next(err);
-			} else {
-				return res.redirect('/');
 			}
 		});
-	}
+  }
+
+	return res.redirect('/');
 });
 
 router.get('/forgetpass', (req, res, next) => {

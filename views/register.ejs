@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Fee Bootstrap Admin Theme with Webpack and Laravel-Mix" />
+    <meta name="keywords" content="bootstrap, admin theme, admin dashboard, jquery, webpack, laravel-mix, template, responsive" />
+    <meta name="author" content="siQuang - Simon Nguyen" />
+
+    <title>Oilfield - Register</title>
+
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
+</head>
+
+<body class="pg-login">
+
+    <div class="login-wrapper">
+        <div class="align-items-center d-flex h-100 justify-content-center">
+            <div class="card" id="login-card">
+                <div class="card-body text-center">
+                    <h3><span class="text-carolina bold">OIL </span>FIELD</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/register" method="post" id="form">
+                        <div class="text-center pb-3">
+                            <h5 class="text-center bold">Sign-Up</h5>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ti-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" name="username" placeholder="User Name" autocomplete="off">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ti-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control" name="password" placeholder="Password">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ti-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+                        </div>
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-carolina">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <p><small>Copyright © 2021 Oilfield</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
