@@ -1,0 +1,41 @@
+html, body {
+  height: 100vh;
+  overflow: hidden;
+}
+body {
+  background-image: url("../img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+  font-family: "Varela Round", Sans-serif;
+  text-shadow: 0 30px 10px rgba(0, 0, 0, 0.15);
+}
+body:before {
+  height: 60vmax;
+  width: 60vmax;
+  z-index: -2;
+}
+body:after {
+  height: 40vmax;
+  width: 40vmax;
+  z-index: -1;
+}
+
+.main {
+  text-align: center;
+  z-index: 5;
+}
+
+p {
+  font-size: 18px;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 95px;
+  margin: 0;
+}

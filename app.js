@@ -47,15 +47,14 @@ app.use('/css', css);
 // end of scss
 
 // start of routing
-const index = require('./routes/index');
+const web = require('./routes/web');
 
-app.use('/', index);
+app.use('/', web);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('File Not Found');
-  err.status = 404;
-  next(err);
+  res.status(404);
+  return res.render('404.ejs');
 });
 
 // error handler

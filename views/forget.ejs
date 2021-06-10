@@ -1,73 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<title>Login Register App</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-	</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="./css/main.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
 
-	<script type="text/javascript">
-		$(document).ready(() => {
+    <title>Oilfield - Login</title>
 
-			$("#form2").submit((event) => {
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/app.css">
 
-				event.preventDefault();
-
-				$.ajax({
-					type: 'POST',
-					url: '/forgetpass',
-					data: $('#form2').serialize(),
-					dataType: "json",
-					success: (response) => {
-						//alert("a");
-						//console.log(response.Success);
-						$('#form2')[0].reset();
-						//alert("abc");
-						document.getElementById("check").innerHTML = response.Success;
-
-						setTimeout(() => {
-							document.getElementById("check").innerHTML = "";
-						}, 3000);
-						if (response.Success == "Password changed!") {
-							document.getElementById("aa").click();
-						};
-					},
-					error: () => {
-					}
-				})
-			});
-
-		});
-	</script>
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
 </head>
 
-<body>
+<body class="pg-login">
 
-	<div class="col-md-4 col-md-offset-4 form-card">
-		<div>
-			<p>Change Password</p>
-		</div>
-		<div class="form-group">
-			<form id="form2" method="post">
-				<input type="text" name="email" placeholder="E-mail" required="" class="form-control"><br />
-				<input type="password" name="password" placeholder="Password" required="" class="form-control"><br />
-				<input type="password" name="passwordConf" placeholder="Confirm Password" required=""
-					class="form-control"><br />
-				<input type="submit" value="Change" class="btn btn-success">
-			</form>
-		</div>
-		<div class="mssg bg-danger">
-			<span id="check"></span>
-		</div>
-		<div id="LangTable"><a href="/login" id="aa"></a>
-		</div>
-		<div id="LangTable"><span>Go back to </span><a href="/">Register</a> or <a href="/login">Login</a>
-		</div>
-	</div>
+    <div class="login-wrapper">
+        <div class="align-items-center d-flex h-100 justify-content-center">
+            <div class="card" id="forget-card">
+                <div class="card-body logo text-center">
+                    <h3><span class="text-carolina bold">OIL </span>FIELD</h3>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        <div class="pb-2">
+                            <h5 class="text-center bold">Forget Password</h5>
+                            <p>Enter email address below to reset your password.</p>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ti-email"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <a href="/" class="btn btn-carolina">Reset Password</a>
+                            <a href="/" class="btn btn-secondary" id="forget-cancel">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>

@@ -52,7 +52,7 @@ router.post('/login', [
   const userName = req.body.username || null;
   const passWord = req.body.password || null;
 	if (!errors.isEmpty()) {
-    return res.render('users/login', util.ResponseUtil.buildDefaultRenderParams(req, res, { layout: 'login', errors: errors.array(), form: { userName: userName } }));
+    return res.render('index.ejs', { "error" : errors.array() });
   }
 
 	if (userName && passWord) {
@@ -90,7 +90,7 @@ router.get('/logout', (req, res, next) => {
 	return res.redirect('/');
 });
 
-router.get('/forgetpass', (req, res, next) => {
+router.get('/forget', (req, res, next) => {
 	res.render("forget.ejs");
 });
 
