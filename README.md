@@ -1,4 +1,4 @@
-# Node.js-Register-Login-App
+# Express.js Admin-App
 
 This is a user login and registration app using Node.js, Express, Mongoose, EJS and express-sessions.
 
@@ -17,14 +17,11 @@ npm install
 
 ### To Run
 ```
-nodemon server.js
+npm start
 ```
 
 Code is Running on 
-+ http://localhost:3000/
-
-### To checkout live
-<a href="https://nodejs-register-login-app.herokuapp.com" target="_blank">https://nodejs-register-login-app.herokuapp.com</a>
++ http://localhost:5000/
 
 :heart_eyes: Thanks
 
